@@ -12,4 +12,4 @@ with zipfile.PyZipFile(sys.argv[1], optimize=2, mode="w") as fp:
     for path in libdir.iterdir():
         if path.is_dir() and path.name not in _EXCLUDE_MODULES:
             fp.writepy(path)  # pyright: ignore[reportArgumentType]
-    assert fp.namelist()
+    assert fp.namelist(), "Generated pythoncore.zip is empty. This will not block the build but will break MO2 at runtime!"
